@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import Navbar from "./components/layout/Navbar";
 import Dashboard from "./components/layout/Dashboard";
 import Login from "./components/auth/Login";
+import CreateMonth from "./components/months/CreateMonth";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
                     )
                   }
                 />
+                <Route path="/new-month" component={CreateMonth} />
               </Switch>
             </div>
           </div>

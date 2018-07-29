@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 import { rootReducer } from "./reducers/root";
+import { getMonths } from "./actions/actions";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -18,5 +19,25 @@ firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 
 const store = createStore(rootReducer);
+
+function getMonthsToStore() {
+  var months = [];
+
+  firestore.collection("months").onSnapshot(snapshot => {
+    months = [];
+    snapshot.docs.forEach(doc => {
+      const newMonth = {
+        id: doc.id,
+        est_Income: doc.data().est_Income,
+        est_Spending: doc.data().est_Spending
+      };
+      months.push(newMonth);
+    });
+
+    store.dispatch(getMonths(months));
+  });
+}
+
+getMonthsToStore();
 
 export default store;

@@ -1,13 +1,14 @@
-import { TEST_ACTION } from "../actions/action-types";
+import { GET_MONTHS } from "../actions/action-types";
 
 const initialState = {
-  test: "test"
+  months: []
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TEST_ACTION:
-      return { ...state, test: action.payload.test };
+    case GET_MONTHS:
+      state = { ...state, months: [action.payload] };
+      return state;
     default:
       return state;
   }

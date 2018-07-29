@@ -1,6 +1,6 @@
-import { TEST_ACTION } from "./action-types";
+import { GET_MONTHS } from "./action-types";
 
-export const testAction = test => ({
-  type: TEST_ACTION,
-  payload: test
+export const getMonths = months => ({
+  type: GET_MONTHS,
+  payload: months
 });
